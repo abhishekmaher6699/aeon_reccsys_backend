@@ -1,4 +1,4 @@
-name: Triggered Workflow
+name: Aeon Reccomendation System Backend Workflow
 
 on:
   # push:
@@ -24,3 +24,54 @@ jobs:
           else
             echo "Triggered by a database change: ${{ github.event.inputs.change }}"
           fi
+
+  model-deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Data ingestion
+        run: |
+          python src/data_ingestion.py
+      
+      - name: Data validation
+        run: |
+          pytest test/test_data.py
+      
+      - name: Test Transformation functions
+        run: | 
+          pytest test/test_transformation.py
+      
+      - name: Data Transformation
+        run: |
+          python src\data_transformation.py
+      
+      - name: Generate objects
+        run: |
+          python src\vectorizer.py
+      
+      - name: Test objects
+        run: |
+          pytest test/test_objects.py
+      
+      
