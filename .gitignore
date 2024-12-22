@@ -1,0 +1,14 @@
+aeon
+.env
+
+notebooks/.ipynb_checkpoints
+
+__pycache__
+
+lambda.py
+
+objects.pkl
+
+.pytest_cache
+
+data.csv

@@ -1,0 +1,26 @@
+name: Triggered Workflow
+
+on:
+  # push:
+  #   branches:
+  #     - main  # Adjust the branch as necessary
+  workflow_dispatch:
+    inputs:
+      change:
+        description: "Details about the database change"
+        required: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Log the trigger type
+        run: |
+          if [ "${{ github.event_name }}" == "push" ]; then
+            echo "Triggered by a push to the repository."
+          else
+            echo "Triggered by a database change: ${{ github.event.inputs.change }}"
+          fi
