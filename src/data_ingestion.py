@@ -59,5 +59,5 @@ def fetch_data():
             cursor.close()
             connection.close()
 
-if __name__ == "main":
+if __name__ == "__main__":
     fetch_data()

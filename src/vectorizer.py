@@ -76,8 +76,9 @@ def main():
     except Exception as e:
         logging.info(e)
 
-if __name__ == "main":
+if __name__ == "__main__":
     main()
+
 
 
 
