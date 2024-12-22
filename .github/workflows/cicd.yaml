@@ -51,6 +51,11 @@ jobs:
           pip install -r requirements.txt
 
       - name: Data ingestion
+        env:
+          POSTGRES_HOST =  ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_USER =  ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASS =  ${{ secrets.POSTGRES_PASS }}
+          POSTGRES_DB =  ${{ secrets.POSTGRES_DB }}
         run: |
           python src/data_ingestion.py
       
@@ -73,5 +78,4 @@ jobs:
       - name: Test objects
         run: |
           pytest test/test_objects.py
-      
       
