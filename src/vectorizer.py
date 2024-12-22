@@ -4,7 +4,7 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics.pairwise import cosine_similarity
 
-import logging
+# import logging
 import pickle
 
 def fetch_data():
@@ -12,11 +12,11 @@ def fetch_data():
     try:
         df = pd.read_csv("./artifacts/data.csv")
 
-        logging.info("Data fetched successfully")
+        print("Data fetched successfully")
 
         return df
     except Exception as e:
-        logging.info(e)
+        print(e)
 
 def vectorize(data):
 
@@ -24,17 +24,17 @@ def vectorize(data):
         vectorizer = TfidfVectorizer()
         tfidf_matrix  = vectorizer.fit_transform(data)
 
-        logging.info("Tfidf matrix built")
+        print("Tfidf matrix built")
 
         pca = PCA(n_components=100)
         pca_matrix = pca.fit_transform(tfidf_matrix.toarray())
 
-        logging.info("PCA matrix built")
+        print("PCA matrix built")
 
         return vectorizer, tfidf_matrix, pca, pca_matrix
     
     except Exception as e:
-        logging.info(e)
+        print(e)
 
 def generate_sim_matrix(pca_matrix, tfidf_matrix):
 
@@ -45,7 +45,7 @@ def generate_sim_matrix(pca_matrix, tfidf_matrix):
         return pca_sim_scores, tf_sim_scores
     
     except Exception as e:
-        logging.info(e)
+        print(e)
 
 def main():
     try:
@@ -71,10 +71,10 @@ def main():
         with open('./artifacts/objects.pkl', 'wb') as f:
             pickle.dump(data_to_pickle, f)
 
-        logging.info("All objects pickled successfully!")
+        print("All objects pickled successfully!")
     
     except Exception as e:
-        logging.info(e)
+        print(e)
 
 if __name__ == "__main__":
     main()

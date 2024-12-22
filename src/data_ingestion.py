@@ -2,7 +2,6 @@ import pandas as pd
 import psycopg2
 from dotenv import load_dotenv
 import os
-import logging
 
 load_dotenv()
 
@@ -29,17 +28,17 @@ def setup_connection():
 
         return connection, cursor
     except Exception as e:
-        logging.info(e)
+        print(e)
 
 
 def fetch_data():
 
     try:
         connection, cursor = setup_connection()
-        logging.info("Successfully connected to the aeon database.")
+        print("Successfully connected to the aeon database.")
         
         query = f"SELECT * FROM {table_name}"
-        logging.info("Fetching data....")
+        print("Fetching data....")
         cursor.execute(query)
 
         colnames = [desc[0] for desc in cursor.description]
@@ -52,7 +51,7 @@ def fetch_data():
         df.to_csv("./artifacts/data.csv", index=False)
 
     except Exception as e:
-        logging.info(f"Error: {e}")
+        print(f"Error: {e}")
 
     finally:
         if connection:

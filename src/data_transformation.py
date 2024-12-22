@@ -5,7 +5,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import string
-import logging
+# import logging
 
 nltk.download('punkt_tab')
 nltk.download('punkt')
@@ -42,16 +42,16 @@ def main():
     try:
         df = pd.read_csv("./artifacts/data.csv")
         df['content'] =  df['content'].apply(expand_words)
-        logging.info("Expanded contradictions")
+        print("Expanded contradictions")
         df['transformed_content'] = df['content'].apply(clean_data)
-        logging.info("Transformed data")
+        print("Transformed data")
 
         df.to_csv("./artifacts/data.csv", index=False)
 
-        logging.info("Saved data")
+        print("Saved data")
 
     except Exception as e:
-        logging.info(e)
+        print(e)
 
 if __name__ == "__main__":
     main()
