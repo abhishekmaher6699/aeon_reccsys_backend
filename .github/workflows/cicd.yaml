@@ -69,11 +69,11 @@ jobs:
       
       - name: Data Transformation
         run: |
-          python src\data_transformation.py
+          python src/data_transformation.py
       
       - name: Generate objects
         run: |
-          python src\vectorizer.py
+          python src/vectorizer.py
       
       - name: Test objects
         run: |
