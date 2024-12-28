@@ -63,7 +63,7 @@ def main():
             "vectorizer": vectorizer,
             "tfidf_matrix": tfidf_matrix,
             "pca": pca,
-            # "pca_matrix": pca_matrix,
+            "pca_matrix": pca_matrix,
             "pca_sim_scores": pca_sim_scores,
             # "tf_sim_scores": tf_sim_scores
         }

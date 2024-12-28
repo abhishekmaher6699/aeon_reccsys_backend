@@ -26,7 +26,6 @@ def test_expand_words(text, expected_output):
 def test_remove_punctuations(text, expected_output):
     assert remove_punctuations(text) == expected_output
 
-
 @pytest.mark.parametrize(
     "text, expected_output",
     [

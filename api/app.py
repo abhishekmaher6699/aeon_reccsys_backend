@@ -27,7 +27,7 @@ def home():
 @app.get('/reccomend_with_url/')
 def reccomend_with_url(url: str):
 
-    reccomendations = recommend_articles(url, loaded_data['pca_sim_scores'], loaded_data['df'], loaded_data['url_to_id'])
+    reccomendations = recommend_articles(url, loaded_data['pca_sim_scores'], loaded_data['vectorizer'], loaded_data['pca'], loaded_data['pca_matrix'], loaded_data['df'], loaded_data['url_to_id'])
 
     return reccomendations
 
