@@ -16,7 +16,7 @@ def test_is_not_empty(load_data):
 
 
 def test_column_existence(load_data):
-    required_columns = ['content', 'url']
+    required_columns = ['content', 'url', 'headline']
     missing_columns = [col for col in required_columns if col not in load_data.columns]
     assert not missing_columns, f"Missing columns in the dataset: {', '.join(missing_columns)}"
 
