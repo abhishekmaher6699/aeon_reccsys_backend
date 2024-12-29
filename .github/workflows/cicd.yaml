@@ -141,7 +141,7 @@ jobs:
             # Pull and run the new container
             sudo docker pull 529088280615.dkr.ecr.us-east-1.amazonaws.com/aeonbackendimg:latest
             
-            sudo docker run -d -p 80:80 \
+            sudo docker run -d -p 8000:80 \
               --name aeonApp-$(date +%Y%m%d-%H%M%S) \
               529088280615.dkr.ecr.us-east-1.amazonaws.com/aeonbackendimg:latest
             
