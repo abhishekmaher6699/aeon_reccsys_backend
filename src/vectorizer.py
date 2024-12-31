@@ -29,7 +29,7 @@ def vectorize(data):
         pca = PCA(n_components=100)
         pca_matrix = pca.fit_transform(tfidf_matrix.toarray())
 
-        print("PCA matrix built")
+        print("PCA matrix built!")
 
         return vectorizer, tfidf_matrix, pca, pca_matrix
     
